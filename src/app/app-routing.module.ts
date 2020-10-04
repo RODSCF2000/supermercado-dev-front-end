@@ -1,3 +1,5 @@
+import { ProdutoComponent } from './components/produto/produto.component';
+import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { LoginComponent } from './components/login/login.component';
@@ -10,6 +12,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'cadastro', component: CadastroComponent},
   { path: 'shop', component: ShopComponent},
+  { path: 'carrinho', component: CarrinhoComponent},
+  { path: 'produto/:id', component: ProdutoComponent},
   { path: '**', redirectTo: ''}
 ];
 
