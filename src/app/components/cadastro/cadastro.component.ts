@@ -11,12 +11,16 @@ export class CadastroComponent implements OnInit {
 
   public usuario: Usuario = {
     id: null,
+    nome: '',
+    sobrenome: '',
     login: '',
     senha: '',
+    confirmaSenha: '',
     nascimento: '',
     telefone: null,
     email: '',
-    cep: null
+    cep: null,
+    ativo: false
   };
 
 
@@ -29,10 +33,11 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrar() {
-    
-      alert('Cadastro realizado com sucesso!!');
-      this.router.navigate(['login']);
-    
+      this.usuariosService.cadastrar(this.usuario);
+  }
+
+  login(){
+    //this.usuariosService.cadastrar(this.usuario);
   }
 
 }
