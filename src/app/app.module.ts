@@ -12,6 +12,8 @@ import { HeaderComponent } from './components/sub-components/header/header.compo
 import { FooterComponent } from './components/sub-components/footer/footer.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { ProdutoComponent } from './components/produto/produto.component';
+import { ProdutoCadastroComponent } from './components/produto-cadastro/produto-cadastro.component';
+import { ProdutoEditarComponent } from './components/produto-editar/produto-editar.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ProdutoComponent } from './components/produto/produto.component';
     HeaderComponent,
     FooterComponent,
     CarrinhoComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    ProdutoCadastroComponent,
+    ProdutoEditarComponent
   ],
   imports: [
     BrowserModule,

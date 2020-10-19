@@ -14,7 +14,9 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'oranges',
-      foto: "background-image: url('../../../assets/img/product/product-1.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-1.jpg')",
+      foto1: "../../../assets/img/product/product-1.jpg"
+
     },
     {
       id: 2,
@@ -22,7 +24,8 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'oranges',
-      foto: "background-image: url('../../../assets/img/product/product-2.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-2.jpg')",
+      foto1: "../../../assets/img/product/product-2.jpg"
     },
     {
       id: 3,
@@ -30,7 +33,9 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'oranges',
-      foto: "background-image: url('../../../assets/img/product/product-3.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-3.jpg')",
+      foto1: "../../../assets/img/product/product-3.jpg"
+
     },
     {
       id: 4,
@@ -38,7 +43,8 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'fresh-meat',
-      foto: "background-image: url('../../../assets/img/product/product-4.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-4.jpg')",
+      foto1: "../../../assets/img/product/product-4.jpg"
     },
     {
       id: 5,
@@ -46,7 +52,8 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'fresh-meat',
-      foto: "background-image: url('../../../assets/img/product/product-5.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-5.jpg')",
+      foto1: "../../../assets/img/product/product-5.jpg"
     },
     {
       id: 6,
@@ -54,7 +61,8 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'fresh-meat',
-      foto: "background-image: url('../../../assets/img/product/product-6.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-6.jpg')",
+      foto1: "../../../assets/img/product/product-6.jpg"
     },
     {
       id: 7,
@@ -62,7 +70,9 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'vegetables',
-      foto: "background-image: url('../../../assets/img/product/product-7.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-7.jpg')",
+      foto1: "../../../assets/img/product/product-7.jpg"
+
     },
     {
       id: 8,
@@ -70,7 +80,9 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'vegetables',
-      foto: "background-image: url('../../../assets/img/product/product-8.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-8.jpg')",    
+      foto1: "../../../assets/img/product/product-8.jpg"
+
     },
     {
       id: 9,
@@ -78,7 +90,8 @@ export class ProdutosService {
       preco: '30.0',
       quantidade: 3,
       detalhes: 'vegetables',
-      foto: "background-image: url('../../../assets/img/product/product-9.jpg')"
+      foto: "background-image: url('../../../assets/img/product/product-9.jpg')",
+      foto1: "../../../assets/img/product/product-9.jpg"
     },
     {
         id: 10,
@@ -86,7 +99,8 @@ export class ProdutosService {
         preco: '30.0',
         quantidade: 3,
         detalhes: 'fastfood',
-        foto: "background-image: url('../../../assets/img/product/product-10.jpg')"
+        foto: "background-image: url('../../../assets/img/product/product-10.jpg')",
+        foto1: "../../../assets/img/product/product-10.jpg"
     },
       {
         id: 11,
@@ -94,7 +108,8 @@ export class ProdutosService {
         preco: '30.0',
         quantidade: 3,
         detalhes: 'fastfood',
-        foto: "background-image: url('../../../assets/img/product/product-11.jpg')"
+        foto: "background-image: url('../../../assets/img/product/product-11.jpg')",
+        foto1: "../../../assets/img/product/product-11.jpg"
     },
       {
         id: 12,
@@ -102,7 +117,8 @@ export class ProdutosService {
         preco: '30.0',
         quantidade: 3,
         detalhes: 'fastfood',
-        foto: "background-image: url('../../../assets/img/product/product-12.jpg')"
+        foto: "background-image: url('../../../assets/img/product/product-12.jpg')",
+        foto1: "../../../assets/img/product/product-12.jpg"
     }
   ];
 
@@ -111,7 +127,9 @@ export class ProdutosService {
   cadastrar(produto: Produto) {
     const id = this.produtos.length+1;
     produto.id = id;
-    produto.foto = '../../../assets/img/product/product-10.jpg';
+    produto.nome = produto.nome;
+    produto.foto = "background-image: url('../../../assets/img/product/product-10.jpg')";
+    produto.foto1= "../../../assets/img/product/product-10.jpg"
 
     this.produtos.push(produto);
   }
@@ -146,7 +164,6 @@ export class ProdutosService {
         if(confirm('Deseja excluir o item?')){
           this.produtos.splice(i, 1);
           alert('Produto excluido com sucesso !!')
-          break;
         }
       }
     }

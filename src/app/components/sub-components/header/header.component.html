@@ -49,12 +49,9 @@
                     <ul>
                         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">Inicio</a></li>
                         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/shop">Mercado</a></li>
-                        <li><a href="#">Pages</a>
+                        <li><a href="#">Gerência</a>
                             <ul class="header__menu__dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                <li><a routerLink="/produtoCadastro">Cadastro Produto</a></li>
                             </ul>
                         </li>
                         <li><a href="./contact.html">Contato</a></li>
@@ -66,8 +63,7 @@
                 
                 <div class="header__cart">
                     <div class="header__top__right__auth">
-                     <!--    <a *ngIf="!existeUsuAtivo()" routerLink="/login"><i class="fa fa-user"></i> Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                        <a *ngIf="existeUsuAtivo()"><i class="fa fa-user"></i> {{usuario.login}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> -->
+                        <a routerLink="/login"><i class="fa fa-user"></i> Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </div>
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>

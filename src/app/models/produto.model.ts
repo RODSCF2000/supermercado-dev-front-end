@@ -5,4 +5,6 @@ export interface Produto {
     quantidade: number;
     detalhes: string;
     foto: string;
+    foto1: string;
+
 }

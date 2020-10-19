@@ -6,11 +6,11 @@ import { ProdutosService } from 'src/app/services/produtos.service';
 
 
 @Component({
-  selector: 'app-produto-cadastro',
-  templateUrl: './produto-cadastro.component.html',
-  styleUrls: ['./produto-cadastro.component.css']
+  selector: 'app-produto-editar',
+  templateUrl: './produto-editar.component.html',
+  styleUrls: ['./produto-editar.component.css']
 })
-export class ProdutoCadastroComponent implements OnInit {
+export class ProdutoEditarComponent implements OnInit {
 
   public produto: Produto = {
     id: null,
@@ -26,16 +26,17 @@ export class ProdutoCadastroComponent implements OnInit {
   constructor(private routerActive: ActivatedRoute,
               private router: Router,
               private produtosService: ProdutosService) {
-  
+    const id = Number( this.routerActive.snapshot.paramMap.get('id') );
+
+    this.produto = this.produtosService.getProdutoById(id);
   }
 
   ngOnInit(): void {
   }
 
-    cadastrar() {
-        this.produtosService.cadastrar(this.produto);
-        alert('Produto cadastrado com sucesso!!');
-        this.router.navigateByUrl('shop');
-      }
-  
+  editar() {
+    this.produtosService.editar(this.produto);
+    alert('Produto editado com sucesso!!')
+    this.router.navigateByUrl('shop');
+  }
 }

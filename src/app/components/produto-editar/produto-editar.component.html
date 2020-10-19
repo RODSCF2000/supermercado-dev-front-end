@@ -1,6 +1,6 @@
 <br>
 
-<h3 style="text-align: center;color:#57b846"><strong>Cadastrar produto</strong></h3>
+<h3 style="text-align: center;color:#57b846"><strong>Editar produto</strong></h3>
 <br>
 <div class="container mt-2">
 
@@ -23,7 +23,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label for="preco">Preço</label>
-                    <input type="text" class="form-control" id="preco" name="preco" placeholder="R$ 0,00" [(ngModel)]="produto.preco"> 
+                    <input type="text" class="form-control" id="preco" name="preco" placeholder="R$ 0,00" [(ngModel)]="produto.preco">
                   </div>
                 </div>
                 <div class="form-group">
@@ -42,7 +42,7 @@
                   
                   
                 </div>
-                <button type="button" class="btn btn-outline-success" (click)="cadastrar()"><strong>Cadastrar</strong></button>
+                <button type="button" class="btn btn-outline-success" (click)="editar()"><strong>Editar</strong></button>
 
               </form>
               </div>

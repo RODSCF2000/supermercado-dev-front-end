@@ -6,6 +6,8 @@ import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { ProdutoEditarComponent } from './components/produto-editar/produto-editar.component';
+import { ProdutoCadastroComponent } from './components/produto-cadastro/produto-cadastro.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent},
   { path: 'carrinho', component: CarrinhoComponent},
   { path: 'produto/:id', component: ProdutoComponent},
+  { path: 'produtoEdit/:id', component: ProdutoEditarComponent},
+  { path: 'produtoCadastro', component: ProdutoCadastroComponent},
   { path: '**', redirectTo: ''}
 ];
 
