@@ -26,16 +26,18 @@ export class ProdutoCadastroComponent implements OnInit {
   constructor(private routerActive: ActivatedRoute,
               private router: Router,
               private produtosService: ProdutosService) {
-  
   }
 
   ngOnInit(): void {
   }
 
-    cadastrar() {
-        this.produtosService.cadastrar(this.produto);
+  cadastrar() {
+    this.produtosService.cadastrar(this.produto).subscribe(
+      () => {
         alert('Produto cadastrado com sucesso!!');
         this.router.navigateByUrl('shop');
       }
-  
+    );
+  }
+
 }

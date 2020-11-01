@@ -10,26 +10,30 @@ import { Usuario } from 'src/app/models/usuario.model';
 export class HeaderComponent implements OnInit {
   public usuario: Usuario;
 
-  constructor(private usuariosService: UsuarioService) {           
-  
-    for(let i=0; i<usuariosService.getAll.length; i++) {
-      if (usuariosService.getAll[i].ativo==true) {
-        this.usuario = usuariosService.getAll[i];
-      }
-    
-    }
-
-  }
+  constructor(private usuariosService: UsuarioService) {}
 
   ngOnInit(): void {
+    this.usuariosService.getAll().subscribe(
+      usuarios => {
+        usuarios.forEach(element => {
+          if (element.ativo) {
+            this.usuario = element;
+          }
+        });
+      }
+    );
   }
 
   retornaUsuAtivo(){
-    this.usuariosService.retornaUsuAtivo;
+    this.usuariosService.retornaUsuAtivo().subscribe(
+      () => {}
+    );
   }
 
   existeUsuAtivo(){
-    this.usuariosService.existeUsuAtivo;
+    this.usuariosService.existeUsuAtivo().subscribe(
+      () => {}
+    );
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario.model';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -23,21 +23,14 @@ export class CadastroComponent implements OnInit {
     ativo: false
   };
 
-
-  constructor(private router: Router,
-    private usuariosService: UsuarioService) {
-
-}
+  constructor(private usuariosService: UsuarioService) {}
 
   ngOnInit(): void {
   }
 
   cadastrar() {
-      this.usuariosService.cadastrar(this.usuario);
+    this.usuariosService.cadastrar(this.usuario).subscribe(
+      () => {}
+    );
   }
-
-  login(){
-    //this.usuariosService.cadastrar(this.usuario);
-  }
-
 }

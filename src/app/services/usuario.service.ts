@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { Usuario } from 'src/app/models/usuario.model';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+const URL = environment.api;
 
 @Injectable({
   providedIn: 'root'
@@ -11,134 +15,95 @@ export class UsuarioService {
     throw new Error('Method not implemented.');
   }
 
-  public usuarios: Array<Usuario> = [
-    {
-        id: 1,
-        nome: 'adm',
-        sobrenome: 'adm',
-        login: 'adm',
-        senha: 'adm',
-        confirmaSenha: 'adm',
-        nascimento: '29/05/2001',
-        telefone: 33339999,
-        email: 'adm@gmail.com',
-        cep: 1234,
-        ativo: false,
-    }  
-  ];
+  constructor(private http: HttpClient, private router: Router) { }
 
-  constructor(private router: Router){
+  cadastrar(usuario: Usuario): Observable<any> {
+    // var loginExistente = false;
+    // for(let i=0;i<this.usuarios.length;i++){
+    //   if(this.usuarios[i].login.toString==usuario.login.toString){
+    //     loginExistente=true;
+    //   }
+    // }
 
-   }
-
-  cadastrar(usuario: Usuario) {
-
-      var loginExistente = false;
-      for(let i=0;i<this.usuarios.length;i++){
-        if(this.usuarios[i].login.toString==usuario.login.toString){
-          loginExistente=true;
-        }
-      }
-
-      if(!loginExistente && usuario.confirmaSenha==usuario.senha){
-        const id = this.usuarios.length+1;
-        usuario.id = id;
-        this.usuarios.push(usuario);
-        alert('Cadastro realizado com sucesso!!');
-        this.router.navigate(['login']);
-      }else if(loginExistente){
-        alert('Login já existente!!');
-      }else if(!(usuario.confirmaSenha==usuario.senha)){
-        alert('Atenção!! Foram informadas senhas distintas.');
-      }
-  }
-
-  entrar(usuario: Usuario) {
-
-    var loginExistente = false;
-    for(let i=0;i<this.usuarios.length;i++){
-      if(this.usuarios[i].login.toString==usuario.login.toString && this.usuarios[i].senha.toString==usuario.senha.toString){
-        loginExistente=true;
-      }
-    }
-
-    if(loginExistente){
-
-      usuario.ativo = true;  
-      alert('Login efetuado com sucesso!!');
-      this.router.navigate(['']);
-    }else{
-      alert('Credenciais incorretas!!');
-    }
-}
-
-  editar(usuario: Usuario) {
-    for(let obj of this.usuarios) {
-      if (usuario.id === obj.id) {
-        obj = usuario;
-        break;
-      }
-    }
-  }
-
-
-  getUsuarioId(id: number) {
-    for(const obj of this.usuarios) {
-      if (id === obj.id) {
-        return obj;
-      }
-    }
-
+    // if(!loginExistente && usuario.confirmaSenha==usuario.senha){
+    //   const id = this.usuarios.length+1;
+    //   usuario.id = id;
+    //   this.usuarios.push(usuario);
+    //   alert('Cadastro realizado com sucesso!!');
+    //   this.router.navigate(['login']);
+    // }else if(loginExistente){
+    //   alert('Login já existente!!');
+    // }else if(!(usuario.confirmaSenha==usuario.senha)){
+    //   alert('Atenção!! Foram informadas senhas distintas.');
+    // }
     return null;
   }
 
-  getAll(): Array<Usuario> {
-    return this.usuarios;
-  }
+  entrar(usuario: Usuario): Observable<any> {
+    // var loginExistente = false;
+    // for(let i=0;i<this.usuarios.length;i++){
+    //   if(this.usuarios[i].login.toString==usuario.login.toString && this.usuarios[i].senha.toString==usuario.senha.toString){
+    //     loginExistente=true;
+    //   }
+    // }
 
-  deletar(id: number) {
+    // if(loginExistente){
 
-    for(let i=0; i<this.usuarios.length; i++) {
-      if (id === this.usuarios[i].id) {
-        this.usuarios.splice(i, 1);
-        break;
-      }
-    }
-
-  }
-
-  retornaAdm() {
-    var retorna = false;
-    for(let i=0; i<this.usuarios.length; i++) {
-      if (this.usuarios[i].login=='adm' && this.usuarios[i].ativo==true) {
-        retorna = true;
-      }
-    
-    }
-
-    return retorna;
-
-  }
-
-  retornaUsuAtivo(){
-    for(let i=0; i<this.usuarios.length; i++) {
-      if (this.usuarios[i].ativo==true) {
-        return this.usuarios[i];
-      }
-    
-    }
+    //   usuario.ativo = true;
+    //   alert('Login efetuado com sucesso!!');
+    //   this.router.navigate(['']);
+    // }else{
+    //   alert('Credenciais incorretas!!');
+    // }
     return null;
   }
 
-  existeUsuAtivo(){
-    for(let i=0; i<this.usuarios.length; i++) {
-      if (this.usuarios[i].ativo==true) {
-        return true;
-      }
-    
-    }
-    return false;
+  editar(usuario: Usuario): Observable<any> {
+    return this.http.put(URL + '/usuarios/' + usuario.id, usuario);
   }
 
+  getUsuarioId(id: number): Observable<any> {
+    return this.http.get(URL + '/usuarios/' + id);
+  }
+
+  getAll(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(URL + '/usuarios');
+  }
+
+  deletar(id: number): Observable<any> {
+    return this.http.delete(URL + '/usuarios/' + id);
+  }
+
+  retornaAdm(): Observable<any> {
+    // var retorna = false;
+    // for(let i=0; i<this.usuarios.length; i++) {
+    //   if (this.usuarios[i].login=='adm' && this.usuarios[i].ativo==true) {
+    //     retorna = true;
+    //   }
+    // }
+
+    // return retorna;
+    return null;
+  }
+
+  retornaUsuAtivo(): Observable<any> {
+    // for(let i=0; i<this.usuarios.length; i++) {
+    //   if (this.usuarios[i].ativo==true) {
+    //     return this.usuarios[i];
+    //   }
+    // }
+    // return null;
+    return null;
+  }
+
+  existeUsuAtivo(): Observable<any> {
+    // for(let i=0; i<this.usuarios.length; i++) {
+    //   if (this.usuarios[i].ativo==true) {
+    //     return true;
+    //   }
+    // }
+    // return false;
+    return null;
+  }
 
 }

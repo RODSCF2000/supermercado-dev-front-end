@@ -11,28 +11,34 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  public produtos: Array<Produto> = [ ];
-
+  public produtos: Produto[] = [];
 
   constructor(private router: Router,
-            private produtosService: ProdutosService,
-            private usuariosService: UsuarioService) { 
-      this.produtos = this.produtosService.getAll();
+              private produtosService: ProdutosService,
+              private usuariosService: UsuarioService) {
   }
 
   ngOnInit(): void {
+    this.produtosService.getAll().subscribe(
+      produtos => {
+        this.produtos = produtos;
+      }
+    );
   }
 
-  deletar(id: number) { 
-       this.produtosService.deletar(id);
+  deletar(id: number) {
+    this.produtosService.deletar(id).subscribe(
+      () => {}
+    );
   }
 
   retornaAdm(){
-    return this.usuariosService.retornaAdm;
+    this.usuariosService.retornaAdm().subscribe(
+      () => {}
+    );
   }
 
   retornaNomeUsuAtivo(){
 
   }
-
 }

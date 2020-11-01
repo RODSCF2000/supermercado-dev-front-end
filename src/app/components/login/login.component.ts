@@ -24,19 +24,14 @@ export class LoginComponent implements OnInit {
     ativo: false
   };
 
-  constructor(private router: Router,
-    private usuariosService: UsuarioService) { 
-
-    }
+  constructor(private router: Router, private usuariosService: UsuarioService) {}
 
   ngOnInit(): void {
   }
 
   entrar() {
-    
-      this.usuariosService.entrar(this.usuario);
-    
+    this.usuariosService.entrar(this.usuario).subscribe(
+      () => {}
+    );
   }
-
-
 }

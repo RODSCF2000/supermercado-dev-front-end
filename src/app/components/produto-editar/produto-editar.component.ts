@@ -26,17 +26,23 @@ export class ProdutoEditarComponent implements OnInit {
   constructor(private routerActive: ActivatedRoute,
               private router: Router,
               private produtosService: ProdutosService) {
-    const id = Number( this.routerActive.snapshot.paramMap.get('id') );
-
-    this.produto = this.produtosService.getProdutoById(id);
   }
 
   ngOnInit(): void {
+    const id = Number( this.routerActive.snapshot.paramMap.get('id'));
+    this.produtosService.getProdutoById(id).subscribe(
+      produto => {
+        this.produto = produto;
+      }
+    );
   }
 
   editar() {
-    this.produtosService.editar(this.produto);
-    alert('Produto editado com sucesso!!')
-    this.router.navigateByUrl('shop');
+    this.produtosService.editar(this.produto).subscribe(
+      () => {
+        alert('Produto editado com sucesso!!');
+        this.router.navigateByUrl('shop');
+      }
+    );
   }
 }
