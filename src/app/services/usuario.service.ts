@@ -15,46 +15,67 @@ export class UsuarioService {
     throw new Error('Method not implemented.');
   }
 
+  public usuariosOrder: Usuario[] = [];
+
   constructor(private http: HttpClient, private router: Router) { }
 
   cadastrar(usuario: Usuario): Observable<any> {
-    // var loginExistente = false;
-    // for(let i=0;i<this.usuarios.length;i++){
-    //   if(this.usuarios[i].login.toString==usuario.login.toString){
-    //     loginExistente=true;
-    //   }
-    // }
+     
 
-    // if(!loginExistente && usuario.confirmaSenha==usuario.senha){
-    //   const id = this.usuarios.length+1;
-    //   usuario.id = id;
-    //   this.usuarios.push(usuario);
-    //   alert('Cadastro realizado com sucesso!!');
-    //   this.router.navigate(['login']);
-    // }else if(loginExistente){
-    //   alert('Login já existente!!');
-    // }else if(!(usuario.confirmaSenha==usuario.senha)){
-    //   alert('Atenção!! Foram informadas senhas distintas.');
-    // }
-    return null;
+
+    this.getAllOrder().subscribe(
+      usuarios => {
+        this.usuariosOrder = usuarios;
+
+        var loginExistente = false;
+         for(let i=0;i<this.usuariosOrder.length;i++){
+           if(this.usuariosOrder[i].login==usuario.login){
+             loginExistente=true;
+           }
+         }
+        if(!loginExistente && usuario.confirmaSenha==usuario.senha){  
+           const id = this.usuariosOrder[0].id;
+           usuario.id = id+1;
+           alert('Usuario cadastrado com sucesso!!');
+           this.router.navigateByUrl('home');
+        }else if(loginExistente){
+          alert('Atenção!! Usuario já existente.');
+          usuario = null;
+        }else if(!(usuario.confirmaSenha==usuario.senha)){
+           alert('Atenção!! Foram informadas senhas distintas.');
+           usuario = null;
+          }
+
+      }
+    );
+    return this.http.post(URL + '/usuarios/',usuario);
   }
 
   entrar(usuario: Usuario): Observable<any> {
-    // var loginExistente = false;
-    // for(let i=0;i<this.usuarios.length;i++){
-    //   if(this.usuarios[i].login.toString==usuario.login.toString && this.usuarios[i].senha.toString==usuario.senha.toString){
-    //     loginExistente=true;
-    //   }
-    // }
 
-    // if(loginExistente){
 
-    //   usuario.ativo = true;
-    //   alert('Login efetuado com sucesso!!');
-    //   this.router.navigate(['']);
-    // }else{
-    //   alert('Credenciais incorretas!!');
-    // }
+    this.getAllOrder().subscribe(
+      usuarios => {
+        this.usuariosOrder = usuarios;
+
+        var loginExistente = false;
+        for(let i=0;i<this.usuariosOrder.length;i++){
+          if(this.usuariosOrder[i].login==usuario.login && this.usuariosOrder[i].senha==usuario.senha){
+            loginExistente=true;
+          }
+        }
+
+        if(loginExistente){
+            usuario.ativo = true;
+            alert('Login efetuado com sucesso!!');
+            this.router.navigate(['']);
+        }else{
+            alert('Credenciais incorretas!!');
+        }
+
+      }
+    );
+
     return null;
   }
 
@@ -68,6 +89,10 @@ export class UsuarioService {
 
   getAll(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(URL + '/usuarios');
+  }
+
+  getAllOrder(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(URL + '/usuarios?_sort=id&_order=desc');
   }
 
   deletar(id: number): Observable<any> {
