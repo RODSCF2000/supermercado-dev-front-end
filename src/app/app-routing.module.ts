@@ -8,16 +8,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ProdutoEditarComponent } from './components/produto-editar/produto-editar.component';
 import { ProdutoCadastroComponent } from './components/produto-cadastro/produto-cadastro.component';
-
+import { AuthGuardService } from './guards/auth-guard.service'
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'cadastro', component: CadastroComponent},
+  { path: 'login', component: LoginComponent,
+    
+  },
+  { path: 'cadastro', component: CadastroComponent,
+  },
   { path: 'shop', component: ShopComponent},
   { path: 'carrinho', component: CarrinhoComponent},
   { path: 'produto/:id', component: ProdutoComponent},
   { path: 'produtoEdit/:id', component: ProdutoEditarComponent},
-  { path: 'produtoCadastro', component: ProdutoCadastroComponent},
+  { path: 'produtoCadastro', component: ProdutoCadastroComponent,
+   canActivate: [AuthGuardService]
+  },
   { path: '**', redirectTo: ''}
 ];
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { AutenticacaoService } from 'src/app/components/login/autenticacao.service'
 import { Usuario } from 'src/app/models/usuario.model';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -17,7 +17,7 @@ export class UsuarioService {
 
   public usuariosOrder: Usuario[] = [];
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private autenticacaoService: AutenticacaoService) { }
 
   cadastrar(usuario: Usuario): Observable<any> {
      
@@ -67,9 +67,15 @@ export class UsuarioService {
 
         if(loginExistente){
             usuario.ativo = true;
+            this.autenticacaoService.logarUsuario;
+            if(usuario.login=='adm' && usuario.senha=='adm'){
+              this.autenticacaoService.setAdm;
+            }
             alert('Login efetuado com sucesso!!');
             this.router.navigate(['']);
         }else{
+            usuario.ativo = false;
+            this.autenticacaoService.logoutUsuario;
             alert('Credenciais incorretas!!');
         }
 
